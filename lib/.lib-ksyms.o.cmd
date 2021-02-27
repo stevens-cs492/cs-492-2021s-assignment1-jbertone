@@ -1,0 +1,1 @@
+cmd_lib/lib-ksyms.o := objdump -h lib/lib.a | sed -ne '/___ksymtab/{s/.*+/EXTERN(/;s/ .*/)/;p}' >lib/.lib-ksyms.o.lds; rm -f lib/.lib_exports.o; ar rcsD lib/.lib_exports.o; ld -m elf_x86_64   -r -o lib/lib-ksyms.o -T lib/.lib-ksyms.o.lds lib/.lib_exports.o; rm lib/.lib_exports.o lib/.lib-ksyms.o.lds
